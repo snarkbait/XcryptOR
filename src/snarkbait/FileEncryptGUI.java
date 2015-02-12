@@ -1012,8 +1012,7 @@ public class FileEncryptGUI extends javax.swing.JFrame {
         }
         if (flag.get(BitFlag.Flags.KEY_PHRASE))
         {
-            byte[] keySHA = Encryptor.getKeySHA(txtPhrase.getText(), controller.getBits());
-            controller.setHashKey(keySHA);           
+            controller.setHashKey(txtPhrase.getText());           
         }
         if (settings.getKeyEnter())
         {

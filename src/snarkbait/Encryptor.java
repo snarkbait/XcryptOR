@@ -119,9 +119,9 @@ public class Encryptor {
         
     }
     
-    public void setHashKey(byte[] b)
+    public void setHashKey(String phrase)
     {
-        //initKeyBytes();
+        byte[] b = getKeySHA(phrase);
         System.arraycopy(b, 0, keyBytes, 0, bits/8);
         String s = "";
         for (int i=0;i<b.length;i++)
@@ -173,18 +173,13 @@ public class Encryptor {
         return returnBank;
     }
     
-    public static byte[] getKeySHA(String phrase, int numBits)
+    private static byte[] getKeySHA(String phrase)
     {
         try 
         {
             MessageDigest md  = MessageDigest.getInstance("SHA-256");
             md.update(phrase.getBytes("UTF-8"));
             byte[] hash = md.digest();
-//            String s = "";
-//            for (int i=0;i<hash.length;i++)
-//            {
-//		s += toHexString((int)hash[i], 2);
-//            }
             return hash;
              
         }

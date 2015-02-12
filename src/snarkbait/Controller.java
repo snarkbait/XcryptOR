@@ -92,9 +92,9 @@ public class Controller
     {
         encryptFile.getRandomKey();
     }
-    public void setHashKey(byte[] keySHA)
+    public void setHashKey(String phrase)
     {
-        encryptFile.setHashKey(keySHA);
+        encryptFile.setHashKey(phrase);
     }
     public void setKey(long value, int index)
     {
