@@ -13,13 +13,12 @@ import javax.swing.JTextField;
  *
  * @author tim
  */
-public class HexInputVerifier extends InputVerifier
+public class HexInputVerifier extends InputVerifier implements HexInput
 {
     @Override
     public boolean verify(JComponent input)
     { 
         String text = ((JTextField) input).getText();
-        String valid = "0123456789abcdefABCDEF";
         boolean e = ((JTextField) input).isEditable();
         if (!e)
         {
@@ -28,7 +27,7 @@ public class HexInputVerifier extends InputVerifier
         if (text.length() == 8)
         {
             for (int i = 0; i < text.length(); i++) {
-                if (!valid.contains(text.substring(i, i + 1)))
+                if (!VALID.contains(text.substring(i, i + 1)))
                 {
                     return false;
                 }

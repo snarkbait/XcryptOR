@@ -59,9 +59,10 @@ public class Controller
         return ZipFunctions.addHeader(tempBank, fileBank.getBank());
     }
     
-    public void readHeader()
+    public BitFlag readFlags()
     {
-        
+        BitFlag flags = ZipFunctions.getFlagsFromHeader(fileBank.getBank());
+        return flags;
     }
     
 // <editor-fold defaultstate="collapsed" desc="Encryptor class wrapper functions">
@@ -120,8 +121,7 @@ public class Controller
     public void encrypt()
     {
         encryptBank = encryptFile.encrypt(compressBank.getBank());
-        toConsole("Encrypted contents CRC32 checksum = " + encryptBank.getCRC32Hex());
-        
+        toConsole("Encrypted contents CRC32 checksum = " + encryptBank.getCRC32Hex());        
     }
     
     public void saveFile(File f)

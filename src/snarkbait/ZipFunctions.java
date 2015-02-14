@@ -108,9 +108,9 @@ public class ZipFunctions
         return true;
     }
     
-    public static byte getFlagsFromHeader(byte[] inBank)
+    public static BitFlag getFlagsFromHeader(byte[] inBank)
     {
-        return inBank[9];
+        return new BitFlag((int)inBank[9] &0xff);
     }
     
     public static long getCRC32FromHeader(byte[] inBank)

@@ -21,7 +21,7 @@ public class FileEncryptGUI extends javax.swing.JFrame {
     /**
      * Creates new form FileEncryptGUI
      */
-    private final BitFlag flag;
+    private BitFlag flag;
     //private final Encryptor encFile;
     private final Settings settings;
     private final Controller controller;
@@ -99,6 +99,17 @@ public class FileEncryptGUI extends javax.swing.JFrame {
         keybitgroup = new javax.swing.ButtonGroup();
         keyTypeGroup = new javax.swing.ButtonGroup();
         saveFileGroup = new javax.swing.ButtonGroup();
+        enterKeyFrame = new javax.swing.JFrame();
+        jLabel10 = new javax.swing.JLabel();
+        keyFrameTxtKey1 = new javax.swing.JTextField();
+        keyFrameTxtKey2 = new javax.swing.JTextField();
+        keyFrameTxtKey3 = new javax.swing.JTextField();
+        keyFrameTxtKey4 = new javax.swing.JTextField();
+        keyFrameBtnOk = new javax.swing.JButton();
+        keyFrameBtnCancel = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         btnEncrypt = new javax.swing.JButton();
         btnDecrypt = new javax.swing.JButton();
@@ -500,6 +511,80 @@ public class FileEncryptGUI extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        enterKeyFrame.setTitle("Get Key");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Enter your encyryption key for this file:");
+
+        keyFrameTxtKey1.setInputVerifier(verifier);
+
+        keyFrameTxtKey2.setInputVerifier(verifier);
+
+        keyFrameTxtKey3.setInputVerifier(verifier);
+
+        keyFrameTxtKey4.setInputVerifier(verifier);
+
+        keyFrameBtnOk.setText("Ok");
+
+        keyFrameBtnCancel.setText("Cancel");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("Or enter key phrase:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane7.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout enterKeyFrameLayout = new javax.swing.GroupLayout(enterKeyFrame.getContentPane());
+        enterKeyFrame.getContentPane().setLayout(enterKeyFrameLayout);
+        enterKeyFrameLayout.setHorizontalGroup(
+            enterKeyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(enterKeyFrameLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(enterKeyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(enterKeyFrameLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(keyFrameBtnOk)
+                        .addGap(18, 18, 18)
+                        .addComponent(keyFrameBtnCancel))
+                    .addComponent(jLabel10)
+                    .addGroup(enterKeyFrameLayout.createSequentialGroup()
+                        .addComponent(keyFrameTxtKey1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(keyFrameTxtKey2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(keyFrameTxtKey3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(keyFrameTxtKey4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        enterKeyFrameLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {keyFrameBtnCancel, keyFrameBtnOk});
+
+        enterKeyFrameLayout.setVerticalGroup(
+            enterKeyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(enterKeyFrameLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addGroup(enterKeyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(keyFrameTxtKey1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keyFrameTxtKey2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keyFrameTxtKey3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keyFrameTxtKey4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(enterKeyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(keyFrameBtnOk)
+                    .addComponent(keyFrameBtnCancel))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("XcryptOR");
 
@@ -515,6 +600,11 @@ public class FileEncryptGUI extends javax.swing.JFrame {
 
         btnDecrypt.setText("Decrypt");
         btnDecrypt.setEnabled(false);
+        btnDecrypt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDecryptActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(textarea);
 
@@ -1096,6 +1186,18 @@ public class FileEncryptGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtKey4FocusLost
 
+    private void btnDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecryptActionPerformed
+        flag = controller.readFlags();
+        if (flag.get(BitFlag.Flags.NO_COMPRESS))
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }//GEN-LAST:event_btnDecryptActionPerformed
+
     public static void toConsole(String str)
     {
         str += "\n";
@@ -1169,10 +1271,13 @@ public class FileEncryptGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkNoCompress;
     private static javax.swing.JTextArea console;
     private javax.swing.JMenu edit;
+    private javax.swing.JFrame enterKeyFrame;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1195,7 +1300,15 @@ public class FileEncryptGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton keyFrameBtnCancel;
+    private javax.swing.JButton keyFrameBtnOk;
+    private javax.swing.JTextField keyFrameTxtKey1;
+    private javax.swing.JTextField keyFrameTxtKey2;
+    private javax.swing.JTextField keyFrameTxtKey3;
+    private javax.swing.JTextField keyFrameTxtKey4;
     private javax.swing.ButtonGroup keyTypeGroup;
     private javax.swing.ButtonGroup keybitgroup;
     private javax.swing.JLabel labelFile;
