@@ -29,7 +29,7 @@ public class ZipFunctions
                                             // text 'XCRYPTOR' in bytes
     private static final byte version = 1;
     
-    public static byte[] makeHeader(byte flags, String filename, long crc)
+    public static byte[] makeHeader(byte flags, String filename, long crc, long fileLen)
     {
         int fLen = filename.length();
         
@@ -51,11 +51,17 @@ public class ZipFunctions
         hdrBank[12] = (byte)((crc >> 8) & 0xff);
         hdrBank[13] = (byte) (crc & 0xff);
         
+        // put original file length
+        hdrBank[14] = (byte)((fileLen >> 24) & 0xff);
+        hdrBank[15] = (byte)((fileLen >> 16) & 0xff);
+        hdrBank[16] = (byte)((fileLen >> 8) & 0xff);
+        hdrBank[17] = (byte) (fileLen & 0xff);
+
         // put filename length integer as bytes
-        hdrBank[14] = (byte) ((fLen >> 24) & 0xff);
-        hdrBank[15] = (byte) ((fLen >> 16) & 0xff);
-        hdrBank[16] = (byte) ((fLen >> 8) & 0xff);
-        hdrBank[17] = (byte) (fLen  & 0xff);
+        hdrBank[18] = (byte) ((fLen >> 24) & 0xff);
+        hdrBank[19] = (byte) ((fLen >> 16) & 0xff);
+        hdrBank[20] = (byte) ((fLen >> 8) & 0xff);
+        hdrBank[21] = (byte) (fLen  & 0xff);
         
         // put filename chars
         for (int j = 0;j<fLen; j++)
@@ -93,7 +99,6 @@ public class ZipFunctions
         }
         catch (IOException e)
         {
-            e.printStackTrace();
         }
     }
     
@@ -110,7 +115,7 @@ public class ZipFunctions
     
     public static BitFlag getFlagsFromHeader(byte[] inBank)
     {
-        return new BitFlag((int)inBank[9] &0xff);
+        return new BitFlag((int)(inBank[9] & 0xff));
     }
     
     public static long getCRC32FromHeader(byte[] inBank)

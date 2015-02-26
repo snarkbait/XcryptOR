@@ -53,9 +53,9 @@ public class Controller
         return ZipFunctions.isEncrypted(fileBank.getBank());
     }
     
-    public byte[] addHeaders(byte flags)
+    public byte[] addHeaders(byte flags, long fileLen)
     {
-        byte[] tempBank = ZipFunctions.makeHeader(flags, encryptFile.getOutFileName(), fileBank.getCRC32());
+        byte[] tempBank = ZipFunctions.makeHeader(flags, encryptFile.getOutFileName(), fileBank.getCRC32(), fileBank.getSize());
         return ZipFunctions.addHeader(tempBank, fileBank.getBank());
     }
     

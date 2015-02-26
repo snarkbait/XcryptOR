@@ -841,7 +841,7 @@ public class FileEncryptGUI extends javax.swing.JFrame {
                     btnEncrypt.setEnabled(true);
                     btnDecrypt.setEnabled(false);
                     controller.setOutFileName(txtOutputFileName.getText());
-                    byte[] headerFile = controller.addHeaders(flag.getFlags());
+                    byte[] headerFile = controller.addHeaders(flag.getFlags(), file.length());
                     if (!flag.get(BitFlag.Flags.NO_COMPRESS))
                     {
                        controller.compressFile(headerFile);
@@ -1157,7 +1157,7 @@ public class FileEncryptGUI extends javax.swing.JFrame {
         }
         else
         { 
-            controller.encrypt();
+          controller.encrypt();
           showBytes(controller.getEncryptBank(), textarea4);
           
           controller.saveFile(file);
@@ -1188,6 +1188,8 @@ public class FileEncryptGUI extends javax.swing.JFrame {
 
     private void btnDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecryptActionPerformed
         flag = controller.readFlags();
+        initSettingsPane();
+        //enterKeyFrame.setVisible(true);
         if (flag.get(BitFlag.Flags.NO_COMPRESS))
         {
             
